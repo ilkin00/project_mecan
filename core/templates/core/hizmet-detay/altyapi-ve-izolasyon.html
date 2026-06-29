@@ -1,0 +1,62 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}{{ hizmet.title }} | Usta İnşaat{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+    <div class="container">
+        <h1>{{ hizmet.title }}</h1>
+        <p>{{ hizmet.description }}</p>
+    </div>
+</section>
+
+<section class="detail-page">
+    <div class="container">
+        <div class="detail-grid">
+            <div class="detail-content">
+                <h2>Hizmet <span class="gradient-text">Detayı</span></h2>
+                <p>{{ hizmet.detail }}</p>
+                
+                <h3>Kapsam</h3>
+                <ul class="about-list">
+                    {% for feature in hizmet.features %}
+                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> {{ feature }}</li>
+                    {% endfor %}
+                </ul>
+                
+                <h3>📸 Galeri</h3>
+                <div class="detail-gallery">
+                    {% for item in hizmet.gallery %}
+                    <div class="gallery-item">{{ item }}</div>
+                    {% endfor %}
+                </div>
+                
+                <h3>🎬 Video</h3>
+                <div class="detail-video">
+                    <iframe src="{{ hizmet.video }}" title="{{ hizmet.title }} videosu" loading="lazy" allowfullscreen></iframe>
+                </div>
+                
+                <a href="{% url 'core:hizmetler' %}" class="back-button btn-outline"><i class="fas fa-arrow-left" aria-hidden="true"></i> Tüm Hizmetlere Dön</a>
+            </div>
+            
+            <aside>
+                <div class="detail-meta">
+                    <h3>💰 Hizmet Bedeli</h3>
+                    <div class="price gradient-text">{{ hizmet.price }}</div>
+                    <div class="price-note">* {{ hizmet.price_note }}</div>
+                    <ul>
+                        <li><span class="label">Teslim Süresi</span><span class="value">3-12 ay</span></li>
+                        <li><span class="label">Garanti</span><span class="value">2 yıl işçilik</span></li>
+                        <li><span class="label">Kapsam</span><span class="value">Anahtar teslim</span></li>
+                        <li><span class="label">Lokasyon</span><span class="value">İstanbul &amp; Çevresi</span></li>
+                    </ul>
+                    <a href="{% url 'core:iletisim' %}" class="btn-primary" style="margin-top:20px;width:100%;justify-content:center;"><span><i class="fas fa-phone-alt" aria-hidden="true"></i> Teklif Al</span></a>
+                </div>
+            </aside>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

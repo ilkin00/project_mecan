@@ -1,0 +1,90 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}{{ hizmet.title }} | {{ settings.site_title }}{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+    <div class="container">
+        <h1>{{ hizmet.title }}</h1>
+        <p>{{ hizmet.description }}</p>
+    </div>
+</section>
+
+<section class="detail-page">
+    <div class="container">
+        <div class="detail-grid">
+            <div class="detail-content">
+                <h2>{{ settings.detail_features_label }}</h2>
+                <p>{{ hizmet.detail }}</p>
+                
+                {% if image_url %}
+                <div style="margin:20px 0;border-radius:var(--radius-sm);overflow:hidden;">
+                    <img src="{{ image_url }}" alt="{{ hizmet.title }}" style="width:100%;height:auto;display:block;border-radius:var(--radius-sm);" />
+                </div>
+                {% endif %}
+                
+                <h3>{{ settings.detail_features_label }}</h3>
+                <ul class="about-list">
+                    {% for feature in hizmet.features %}
+                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> {{ feature }}</li>
+                    {% endfor %}
+                </ul>
+                
+                <!-- GALERİ RESİMLERİ - Birden fazla resim -->
+                {% if galeri_resimleri %}
+                <h3>{{ settings.detail_gallery_label }}</h3>
+                <div class="detail-gallery">
+                    {% for resim in galeri_resimleri %}
+                    <div class="gallery-item" style="background:transparent;border:none;padding:0;min-height:150px;position:relative;overflow:hidden;">
+                        <img src="{{ resim.image.url }}" alt="{{ resim.title|default:hizmet.title }}" 
+                             style="width:100%;height:150px;object-fit:cover;border-radius:var(--radius-sm);" />
+                        {% if resim.title %}
+                        <div style="position:absolute;bottom:0;left:0;right:0;padding:8px 12px;background:rgba(0,0,0,0.6);color:#fff;font-size:0.8rem;border-radius:0 0 var(--radius-sm) var(--radius-sm);">
+                            {{ resim.title }}
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                
+                {% if video_source %}
+                <h3>{{ settings.detail_video_label }}</h3>
+                <div class="detail-video">
+                    {% if video_type == 'youtube' %}
+                        <iframe src="{{ video_source }}" title="{{ hizmet.title }}" loading="lazy" allowfullscreen></iframe>
+                    {% else %}
+                        <video controls style="width:100%;height:100%;position:absolute;top:0;left:0;">
+                            <source src="{{ video_source }}" type="video/mp4">
+                            <source src="{{ video_source }}" type="video/webm">
+                            <source src="{{ video_source }}" type="video/ogg">
+                            {{ settings.loader_text }}
+                        </video>
+                    {% endif %}
+                </div>
+                {% endif %}
+                
+                <a href="{% url 'core:hizmetler' %}" class="back-button btn-outline"><i class="fas fa-arrow-left" aria-hidden="true"></i> {{ settings.detail_back_btn }}</a>
+            </div>
+            
+            <aside>
+                <div class="detail-meta">
+                    <h3>{{ settings.detail_price_label }}</h3>
+                    <div class="price gradient-text">{{ hizmet.price }}</div>
+                    <div class="price-note">{{ settings.detail_price_note }}</div>
+                    <ul>
+                        <li><span class="label">Срок</span><span class="value">3-12 месяцев</span></li>
+                        <li><span class="label">Гарантия</span><span class="value">2 года</span></li>
+                        <li><span class="label">Ключи</span><span class="value">Под ключ</span></li>
+                        <li><span class="label">Локация</span><span class="value">Стамбул и область</span></li>
+                    </ul>
+                    <a href="{% url 'core:iletisim' %}" class="btn-primary" style="margin-top:20px;width:100%;justify-content:center;"><span><i class="fas fa-phone-alt" aria-hidden="true"></i> {{ settings.detail_order_btn }}</span></a>
+                </div>
+            </aside>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

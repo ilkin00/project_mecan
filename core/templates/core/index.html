@@ -1,0 +1,127 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}{{ settings.hero_title }} | {{ settings.site_title }}{% endblock %}
+
+{% block content %}
+
+<section class="hero" aria-label="Главный экран">
+    <div class="container hero-grid">
+        <div class="hero-text">
+            <h1>
+                <span class="gradient-text">{{ settings.hero_title_highlight }}</span><br />
+                {{ settings.hero_title }}
+            </h1>
+            <p>{{ settings.hero_subtitle }}</p>
+            <div class="btn-group">
+                <a href="{% url 'core:iletisim' %}" class="btn-primary">
+                    <span><i class="fas fa-phone-alt" aria-hidden="true"></i> {{ settings.hero_btn_text }}</span>
+                </a>
+                <a href="{% url 'core:projeler' %}" class="btn-outline">
+                    <i class="fas fa-images" aria-hidden="true"></i> {{ settings.hero_btn_projects }}
+                </a>
+            </div>
+            <div class="hero-stats">
+                {% if settings.stat_1_is_active %}
+                <div class="stat reveal" data-delay="100">
+                    <span class="number">{{ settings.stat_1_number }}</span>
+                    <span class="label">{{ settings.stat_1_label }}</span>
+                </div>
+                {% endif %}
+                {% if settings.stat_2_is_active %}
+                <div class="stat reveal" data-delay="200">
+                    <span class="number">{{ settings.stat_2_number }}</span>
+                    <span class="label">{{ settings.stat_2_label }}</span>
+                </div>
+                {% endif %}
+                {% if settings.stat_3_is_active %}
+                <div class="stat reveal" data-delay="300">
+                    <span class="number">{{ settings.stat_3_number }}</span>
+                    <span class="label">{{ settings.stat_3_label }}</span>
+                </div>
+                {% endif %}
+                {% if settings.stat_4_is_active and settings.stat_4_number %}
+                <div class="stat reveal" data-delay="400">
+                    <span class="number">{{ settings.stat_4_number }}</span>
+                    <span class="label">{{ settings.stat_4_label }}</span>
+                </div>
+                {% endif %}
+                {% if settings.stat_5_is_active and settings.stat_5_number %}
+                <div class="stat reveal" data-delay="500">
+                    <span class="number">{{ settings.stat_5_number }}</span>
+                    <span class="label">{{ settings.stat_5_label }}</span>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="image-wrapper">
+                <span>🏗️</span>
+            </div>
+            <div class="floating-badge">
+                <i class="fas fa-star" aria-hidden="true"></i> 15 лет
+            </div>
+            <div class="floating-badge">
+                <i class="fas fa-check-circle" aria-hidden="true"></i> 2 года гарантии
+            </div>
+            <div class="floating-badge">
+                <i class="fas fa-trophy" aria-hidden="true"></i> 120+ проектов
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="services-section" aria-label="Услуги">
+    <div class="container">
+        <div class="section-title reveal">
+            <h2>{{ settings.services_title }} <span class="gradient-text-2"></span></h2>
+            <p>{{ settings.services_subtitle }}</p>
+        </div>
+        <div class="service-grid">
+            {% for hizmet in hizmetler %}
+            <a href="{% url 'core:hizmet_detay' hizmet.slug %}" class="service-card reveal" data-delay="{{ forloop.counter|add:100 }}">
+                <span class="icon"><i class="fas {{ hizmet.icon }}"></i></span>
+                <h3>{{ hizmet.title }}</h3>
+                <p>{{ hizmet.description }}</p>
+                <span class="link-arrow">{{ settings.services_detail }} <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+            </a>
+            {% endfor %}
+        </div>
+        <div style="text-align:center;margin-top:40px;" class="reveal">
+            <a href="{% url 'core:hizmetler' %}" class="btn-outline">{{ settings.services_all_btn }}</a>
+        </div>
+    </div>
+</section>
+
+<section class="projects-section" aria-label="Проекты">
+    <div class="container">
+        <div class="section-title reveal">
+            <h2>{{ settings.projects_title }} <span class="gradient-text-3"></span></h2>
+            <p>{{ settings.projects_subtitle }}</p>
+        </div>
+        <div class="project-grid">
+            {% for proje in projeler %}
+            <a href="{% url 'core:proje_detay' proje.slug %}" class="project-item reveal" data-delay="{{ forloop.counter|add:100 }}">
+                <div class="project-img" style="background:{{ proje.bg_color }};position:relative;">
+                    {% if proje.image and proje.image.url %}
+                        <img src="{{ proje.image.url }}" alt="{{ proje.title }}" style="width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;" />
+                    {% else %}
+                        <span class="project-icon" style="position:relative;z-index:1;">{{ proje.icon }}</span>
+                    {% endif %}
+                    <div class="overlay"></div>
+                </div>
+                <div class="project-info">
+                    <h4>{{ proje.title }}</h4>
+                    <p>{{ proje.description }}</p>
+                    <span class="link-arrow">{{ settings.projects_detail }} <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+        <div style="text-align:center;margin-top:40px;" class="reveal">
+            <a href="{% url 'core:projeler' %}" class="btn-outline">{{ settings.projects_all_btn }}</a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

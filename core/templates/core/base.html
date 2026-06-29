@@ -1,0 +1,126 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>{% block title %}{{ settings.site_title }}{% endblock %}</title>
+    <meta name="description" content="{{ settings.site_description }}" />
+    <meta name="keywords" content="{{ settings.meta_keywords }}" />
+    <meta name="author" content="{{ settings.meta_author }}" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    
+    <!-- Dinamik CSS Renkleri -->
+    <style>
+        :root {
+            --bg-primary: {{ settings.theme_bg_primary }};
+            --bg-secondary: {{ settings.theme_bg_secondary }};
+            --bg-card: {{ settings.theme_bg_card }};
+            --bg-card-hover: {{ settings.theme_bg_card_hover }};
+            
+            --text-primary: {{ settings.theme_text_primary }};
+            --text-secondary: {{ settings.theme_text_secondary }};
+            --text-muted: {{ settings.theme_text_muted }};
+            
+            --gradient-1: linear-gradient(135deg, {{ settings.theme_gradient_1_start }}, {{ settings.theme_gradient_1_end }});
+            --gradient-2: linear-gradient(135deg, {{ settings.theme_gradient_2_start }}, {{ settings.theme_gradient_2_end }});
+            --gradient-3: linear-gradient(135deg, {{ settings.theme_gradient_3_start }}, {{ settings.theme_gradient_3_end }});
+            
+            --accent-1: {{ settings.theme_accent_1 }};
+            --accent-2: {{ settings.theme_accent_2 }};
+            --accent-3: {{ settings.theme_accent_3 }};
+            
+            --border-color: {{ settings.theme_border_color }};
+            --shadow: {{ settings.theme_shadow }};
+            --shadow-glow: {{ settings.theme_shadow_glow }};
+            
+            --btn-primary: {{ settings.theme_btn_primary }};
+            --btn-primary-hover: {{ settings.theme_btn_primary_hover }};
+            --btn-outline: {{ settings.theme_btn_outline }};
+            
+            --hero-bg-start: {{ settings.theme_hero_bg_start }};
+            --hero-bg-end: {{ settings.theme_hero_bg_end }};
+            --hero-glow-1: {{ settings.theme_hero_glow_1 }};
+            --hero-glow-2: {{ settings.theme_hero_glow_2 }};
+            
+            --card-shadow: {{ settings.theme_card_shadow }};
+            --card-glow: {{ settings.theme_card_glow }};
+        }
+    </style>
+    
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+    <div id="loader">
+        <div style="text-align:center;">
+            <div class="loader-spinner"></div>
+            <div class="loader-text">{{ settings.loader_text }}</div>
+        </div>
+    </div>
+
+    <a href="#main-content" class="skip-link">Перейти к содержимому</a>
+
+    <header role="banner">
+        <div class="container header-flex">
+            <a href="{% url 'core:index' %}" class="logo">
+                <span class="gradient-text">{{ settings.site_logo }}</span>
+            </a>
+            <button class="menu-toggle" aria-label="Открыть меню">
+                <span></span><span></span><span></span>
+            </button>
+            <nav role="navigation" aria-label="Главная навигация">
+                <ul class="nav-links">
+                    <li><a href="{% url 'core:index' %}" class="{% if request.resolver_match.url_name == 'index' %}active{% endif %}">{{ settings.nav_home }}</a></li>
+                    <li><a href="{% url 'core:hakkimizda' %}" class="{% if request.resolver_match.url_name == 'hakkimizda' %}active{% endif %}">{{ settings.nav_about }}</a></li>
+                    <li><a href="{% url 'core:hizmetler' %}" class="{% if request.resolver_match.url_name == 'hizmetler' %}active{% endif %}">{{ settings.nav_services }}</a></li>
+                    <li><a href="{% url 'core:projeler' %}" class="{% if request.resolver_match.url_name == 'projeler' %}active{% endif %}">{{ settings.nav_projects }}</a></li>
+                    <li><a href="{% url 'core:iletisim' %}" class="contact-nav {% if request.resolver_match.url_name == 'iletisim' %}active{% endif %}">{{ settings.nav_contact }}</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer role="contentinfo">
+        <div class="container">
+            <div class="footer-flex">
+                <div>
+                    <div class="footer-logo">
+                        <span class="gradient-text">{{ settings.site_logo }}</span>
+                    </div>
+                    <p style="margin-top:6px;color:#666688;font-size:0.9rem;">{{ settings.footer_about }}</p>
+                </div>
+                <nav aria-label="Навигация в подвале">
+                    <div class="footer-links">
+                        <a href="{% url 'core:index' %}">{{ settings.nav_home }}</a>
+                        <a href="{% url 'core:hakkimizda' %}">{{ settings.nav_about }}</a>
+                        <a href="{% url 'core:hizmetler' %}">{{ settings.nav_services }}</a>
+                        <a href="{% url 'core:projeler' %}">{{ settings.nav_projects }}</a>
+                        <a href="{% url 'core:iletisim' %}">{{ settings.nav_contact }}</a>
+                    </div>
+                </nav>
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="copyright">&copy; 2025 {{ settings.site_logo }}. {{ settings.footer_copyright }}</div>
+        </div>
+    </footer>
+
+    <button id="back-to-top" aria-label="Наверх"><i class="fas fa-arrow-up" aria-hidden="true"></i></button>
+
+    <script src="{% static 'js/script.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

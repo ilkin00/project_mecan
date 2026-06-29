@@ -1,0 +1,30 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}{{ settings.page_services_title }} | {{ settings.site_title }}{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+    <div class="container">
+        <h1>{{ settings.page_services_title }}</h1>
+        <p>{{ settings.page_services_subtitle }}</p>
+    </div>
+</section>
+
+<section class="services-section">
+    <div class="container">
+        <div class="service-grid">
+            {% for hizmet in hizmetler %}
+            <a href="{% url 'core:hizmet_detay' hizmet.slug %}" class="service-card">
+                <span class="icon"><i class="fas {{ hizmet.icon }}"></i></span>
+                <h3>{{ hizmet.title }}</h3>
+                <p>{{ hizmet.description }}</p>
+                <span class="link-arrow">{{ settings.services_detail }} <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}

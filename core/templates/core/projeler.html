@@ -1,0 +1,39 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}{{ settings.page_projects_title }} | {{ settings.site_title }}{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+    <div class="container">
+        <h1>{{ settings.page_projects_title }}</h1>
+        <p>{{ settings.page_projects_subtitle }}</p>
+    </div>
+</section>
+
+<section class="projects-section">
+    <div class="container">
+        <div class="project-grid">
+            {% for proje in projeler %}
+            <a href="{% url 'core:proje_detay' proje.slug %}" class="project-item">
+                <div class="project-img" style="background:{{ proje.bg_color }};position:relative;">
+                    {% if proje.image and proje.image.url %}
+                        <img src="{{ proje.image.url }}" alt="{{ proje.title }}" style="width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;" />
+                    {% else %}
+                        <span class="project-icon" style="position:relative;z-index:1;">{{ proje.icon }}</span>
+                    {% endif %}
+                    <div class="overlay"></div>
+                </div>
+                <div class="project-info">
+                    <h4>{{ proje.title }}</h4>
+                    <p>{{ proje.description }}</p>
+                    <span class="link-arrow">{{ settings.projects_detail }} <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}
