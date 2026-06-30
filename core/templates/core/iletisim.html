@@ -29,19 +29,15 @@
                 <h3>{{ settings.contact_title }}</h3>
                 <p>{{ settings.contact_text }}</p>
                 <div class="contact-detail">
-                    <i class="fas fa-phone-alt" aria-hidden="true"></i>
                     <div><strong>{{ settings.contact_phone_label }}</strong><span><a href="tel:{{ settings.contact_phone }}" style="color:var(--text-secondary);">{{ settings.contact_phone }}</a></span></div>
                 </div>
                 <div class="contact-detail">
-                    <i class="fab fa-whatsapp" aria-hidden="true"></i>
                     <div><strong>{{ settings.contact_whatsapp_label }}</strong><span><a href="https://wa.me/{{ settings.contact_whatsapp|cut:' ' }}" style="color:var(--text-secondary);">{{ settings.contact_whatsapp }}</a></span></div>
                 </div>
                 <div class="contact-detail">
-                    <i class="fas fa-envelope" aria-hidden="true"></i>
                     <div><strong>{{ settings.contact_email_label }}</strong><span><a href="mailto:{{ settings.contact_email }}" style="color:var(--text-secondary);">{{ settings.contact_email }}</a></span></div>
                 </div>
                 <div class="contact-detail">
-                    <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                     <div><strong>{{ settings.contact_address_label }}</strong><span>{{ settings.contact_address }}</span></div>
                 </div>
             </div>
@@ -51,7 +47,7 @@
                 <input type="tel" name="phone" placeholder="{{ settings.form_phone }}" required aria-required="true" />
                 <input type="email" name="email" placeholder="{{ settings.form_email }}" />
                 <textarea name="message" placeholder="{{ settings.form_message }}" rows="4" required aria-required="true"></textarea>
-                <button type="submit" class="btn-primary"><span><i class="fas fa-paper-plane" aria-hidden="true"></i> {{ settings.form_btn }}</span></button>
+                <button type="submit" class="btn-primary"><span>{{ settings.form_btn }}</span></button>
             </form>
         </div>
     </div>

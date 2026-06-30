@@ -21,14 +21,14 @@
                     {% if proje.image and proje.image.url %}
                         <img src="{{ proje.image.url }}" alt="{{ proje.title }}" style="width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;" />
                     {% else %}
-                        <span class="project-icon" style="position:relative;z-index:1;">{{ proje.icon }}</span>
+                        <span class="project-icon" style="position:relative;z-index:1;font-size:4rem;">{{ proje.icon }}</span>
                     {% endif %}
                     <div class="overlay"></div>
                 </div>
                 <div class="project-info">
                     <h4>{{ proje.title }}</h4>
                     <p>{{ proje.description }}</p>
-                    <span class="link-arrow">{{ settings.projects_detail }} <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+                    <span class="link-arrow">{{ settings.projects_detail }}</span>
                 </div>
             </a>
             {% endfor %}

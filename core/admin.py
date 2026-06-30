@@ -46,11 +46,24 @@ class SiteSettingsAdmin(admin.ModelAdmin):
         ('📱 НАВИГАЦИЯ', {
             'fields': ('nav_home', 'nav_about', 'nav_services', 'nav_projects', 'nav_contact')
         }),
+        ('🔗 НАВИГАЦИЯ - ССЫЛКИ (Telegram, WhatsApp, Phone, Email)', {
+            'fields': ('nav_link_telegram', 'nav_link_whatsapp', 'nav_link_phone', 'nav_link_email'),
+            'description': 'Telegram, WhatsApp, Telefon ve Email linklerini buradan değiştirebilirsiniz.'
+        }),
+        ('📱 СОЦИАЛЬНЫЕ СЕТИ', {
+            'fields': ('social_facebook', 'social_instagram', 'social_youtube', 'social_telegram'),
+            'description': 'Sosyal medya linklerini buradan değiştirebilirsiniz.'
+        }),
         ('🌟 ГЛАВНЫЙ ЭКРАН', {
             'fields': ('hero_title', 'hero_title_highlight', 'hero_subtitle', 'hero_btn_text', 'hero_btn_projects')
         }),
-        ('📊 СТАТИСТИКА', {
-            'fields': ('stat_year', 'stat_clients', 'stat_satisfaction')
+        ('📊 СТАТИСТИКА (HERO STATS)', {
+            'fields': (
+                'hero_stats_active',
+                ('hero_stat_1_number', 'hero_stat_1_label'),
+                ('hero_stat_2_number', 'hero_stat_2_label'),
+                ('hero_stat_3_number', 'hero_stat_3_label'),
+            ),
         }),
         ('🛠️ УСЛУГИ', {
             'fields': ('services_title', 'services_subtitle', 'services_all_btn', 'services_detail')
@@ -77,7 +90,7 @@ class SiteSettingsAdmin(admin.ModelAdmin):
                       'detail_gallery_label', 'detail_video_label',
                       'detail_back_btn', 'detail_order_btn')
         }),
-        ('📄 ДЕТАЛЬНЫЕ СТРАНИЦЫ - ДОП. БЛОКИ (С checkbox)', {
+        ('📄 ДЕТАЛЬНЫЕ СТРАНИЦЫ - ДОП. БЛОКИ', {
             'fields': (
                 ('detail_block_1_label', 'detail_block_1_value', 'detail_block_1_active'),
                 ('detail_block_2_label', 'detail_block_2_value', 'detail_block_2_active'),
@@ -86,7 +99,6 @@ class SiteSettingsAdmin(admin.ModelAdmin):
                 ('detail_block_5_label', 'detail_block_5_value', 'detail_block_5_active'),
                 ('detail_block_6_label', 'detail_block_6_value', 'detail_block_6_active'),
             ),
-            'description': 'Her bloğu aktif/pasif yapabilir, etiket ve değerini değiştirebilirsiniz.'
         }),
         ('📋 СТРАНИЦЫ', {
             'fields': ('page_services_title', 'page_services_subtitle',
@@ -129,16 +141,12 @@ class SiteSettingsAdmin(admin.ModelAdmin):
 
 @admin.register(Hizmet)
 class HizmetAdmin(admin.ModelAdmin):
-    list_display = ['title', 'icon_preview', 'price', 'image_preview', 'is_active', 'order']
+    list_display = ['title', 'price', 'image_preview', 'is_active', 'order']
     list_filter = ['is_active', 'created_at']
     search_fields = ['title', 'description', 'detail']
     prepopulated_fields = {'slug': ('title',)}
     ordering = ['order', 'title']
     inlines = [GaleriResimInline]
-
-    def icon_preview(self, obj):
-        return format_html('<i class="fas {}" style="font-size:20px;"></i>', obj.icon)
-    icon_preview.short_description = 'Иконка'
 
     def image_preview(self, obj):
         if obj.image:
@@ -152,16 +160,12 @@ class HizmetAdmin(admin.ModelAdmin):
 
 @admin.register(Proje)
 class ProjeAdmin(admin.ModelAdmin):
-    list_display = ['title', 'icon_preview', 'color_preview', 'image_preview', 'is_active', 'order']
+    list_display = ['title', 'color_preview', 'image_preview', 'is_active', 'order']
     list_filter = ['is_active', 'location', 'bg_color', 'created_at']
     search_fields = ['title', 'description', 'detail', 'location']
     prepopulated_fields = {'slug': ('title',)}
     ordering = ['order', 'title']
     inlines = [GaleriResimInline]
-
-    def icon_preview(self, obj):
-        return format_html('<i class="fas {}" style="font-size:20px;"></i>', obj.icon)
-    icon_preview.short_description = 'Иконка'
 
     def color_preview(self, obj):
         return format_html(

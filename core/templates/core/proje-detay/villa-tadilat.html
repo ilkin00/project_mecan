@@ -17,10 +17,10 @@
         <div class="detail-grid">
             <div class="detail-content">
                 <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px;padding:12px 16px;background:var(--bg-card);border-radius:var(--radius-sm);border:1px solid var(--border-color);font-size:0.9rem;">
-                    <span><i class="fas fa-calendar-alt" style="color:var(--accent-1);"></i> <strong>{{ proje.date }}</strong></span>
-                    <span><i class="fas fa-ruler-combined" style="color:var(--accent-1);"></i> <strong>{{ proje.area }}</strong></span>
-                    <span><i class="fas fa-map-marker-alt" style="color:var(--accent-1);"></i> <strong>{{ proje.location }}</strong></span>
-                    <span><i class="fas fa-clock" style="color:var(--accent-1);"></i> <strong>{{ proje.duration }}</strong></span>
+                    <span><strong>📅 {{ proje.date }}</strong></span>
+                    <span><strong>📐 {{ proje.area }}</strong></span>
+                    <span><strong>📍 {{ proje.location }}</strong></span>
+                    <span><strong>⏱️ {{ proje.duration }}</strong></span>
                 </div>
 
                 <h2>{{ settings.detail_features_label }}</h2>
@@ -35,11 +35,10 @@
                 <h3>{{ settings.detail_features_label }}</h3>
                 <ul class="about-list">
                     {% for feature in proje.features %}
-                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> {{ feature }}</li>
+                    <li>✓ {{ feature }}</li>
                     {% endfor %}
                 </ul>
 
-                <!-- GALERİ RESİMLERİ -->
                 {% if galeri_resimleri %}
                 <h3>{{ settings.detail_gallery_label }}</h3>
                 <div class="detail-gallery">
@@ -73,7 +72,7 @@
                 </div>
                 {% endif %}
 
-                <a href="{% url 'core:projeler' %}" class="back-button btn-outline"><i class="fas fa-arrow-left" aria-hidden="true"></i> {{ settings.detail_back_btn }}</a>
+                <a href="{% url 'core:projeler' %}" class="back-button btn-outline">← {{ settings.detail_back_btn }}</a>
             </div>
 
             <aside>
@@ -117,7 +116,7 @@
                         </li>
                         {% endif %}
                     </ul>
-                    <a href="{% url 'core:iletisim' %}" class="btn-primary" style="margin-top:20px;width:100%;justify-content:center;"><span><i class="fas fa-phone-alt" aria-hidden="true"></i> {{ settings.detail_order_btn }}</span></a>
+                    <a href="{% url 'core:iletisim' %}" class="btn-primary" style="margin-top:20px;width:100%;justify-content:center;"><span>{{ settings.detail_order_btn }}</span></a>
                 </div>
             </aside>
         </div>

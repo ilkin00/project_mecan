@@ -17,10 +17,10 @@
         <div class="service-grid">
             {% for hizmet in hizmetler %}
             <a href="{% url 'core:hizmet_detay' hizmet.slug %}" class="service-card">
-                <span class="icon"><i class="fas {{ hizmet.icon }}"></i></span>
+                <div class="icon">{{ hizmet.title|slice:":1" }}</div>
                 <h3>{{ hizmet.title }}</h3>
                 <p>{{ hizmet.description }}</p>
-                <span class="link-arrow">{{ settings.services_detail }} <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+                <span class="link-arrow">{{ settings.services_detail }}</span>
             </a>
             {% endfor %}
         </div>

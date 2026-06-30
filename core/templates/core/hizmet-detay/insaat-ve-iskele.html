@@ -28,11 +28,10 @@
                 <h3>{{ settings.detail_features_label }}</h3>
                 <ul class="about-list">
                     {% for feature in hizmet.features %}
-                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> {{ feature }}</li>
+                    <li>✓ {{ feature }}</li>
                     {% endfor %}
                 </ul>
 
-                <!-- GALERİ RESİMLERİ -->
                 {% if galeri_resimleri %}
                 <h3>{{ settings.detail_gallery_label }}</h3>
                 <div class="detail-gallery">
@@ -66,7 +65,7 @@
                 </div>
                 {% endif %}
 
-                <a href="{% url 'core:hizmetler' %}" class="back-button btn-outline"><i class="fas fa-arrow-left" aria-hidden="true"></i> {{ settings.detail_back_btn }}</a>
+                <a href="{% url 'core:hizmetler' %}" class="back-button btn-outline">← {{ settings.detail_back_btn }}</a>
             </div>
 
             <aside>
@@ -75,47 +74,36 @@
                     <div class="price gradient-text">{{ hizmet.price }}</div>
                     <div class="price-note">{{ settings.detail_price_note }}</div>
                     <ul>
-                        <!-- BLOK 1 -->
                         {% if settings.detail_block_1_active %}
                         <li>
                             <span class="label">{{ settings.detail_block_1_label }}</span>
                             <span class="value">{{ settings.detail_block_1_value }}</span>
                         </li>
                         {% endif %}
-                        
-                        <!-- BLOK 2 -->
                         {% if settings.detail_block_2_active %}
                         <li>
                             <span class="label">{{ settings.detail_block_2_label }}</span>
                             <span class="value">{{ settings.detail_block_2_value }}</span>
                         </li>
                         {% endif %}
-                        
-                        <!-- BLOK 3 -->
                         {% if settings.detail_block_3_active %}
                         <li>
                             <span class="label">{{ settings.detail_block_3_label }}</span>
                             <span class="value">{{ settings.detail_block_3_value }}</span>
                         </li>
                         {% endif %}
-                        
-                        <!-- BLOK 4 -->
                         {% if settings.detail_block_4_active %}
                         <li>
                             <span class="label">{{ settings.detail_block_4_label }}</span>
                             <span class="value">{{ settings.detail_block_4_value }}</span>
                         </li>
                         {% endif %}
-                        
-                        <!-- BLOK 5 -->
                         {% if settings.detail_block_5_active and settings.detail_block_5_label %}
                         <li>
                             <span class="label">{{ settings.detail_block_5_label }}</span>
                             <span class="value">{{ settings.detail_block_5_value }}</span>
                         </li>
                         {% endif %}
-                        
-                        <!-- BLOK 6 -->
                         {% if settings.detail_block_6_active and settings.detail_block_6_label %}
                         <li>
                             <span class="label">{{ settings.detail_block_6_label }}</span>
@@ -123,7 +111,7 @@
                         </li>
                         {% endif %}
                     </ul>
-                    <a href="{% url 'core:iletisim' %}" class="btn-primary" style="margin-top:20px;width:100%;justify-content:center;"><span><i class="fas fa-phone-alt" aria-hidden="true"></i> {{ settings.detail_order_btn }}</span></a>
+                    <a href="{% url 'core:iletisim' %}" class="btn-primary" style="margin-top:20px;width:100%;justify-content:center;"><span>{{ settings.detail_order_btn }}</span></a>
                 </div>
             </aside>
         </div>

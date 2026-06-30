@@ -18,13 +18,13 @@
             <h2>{{ settings.about_highlight }}</h2>
             <p>{{ settings.about_text }}</p>
             <ul class="about-list">
-                <li><i class="fas fa-check-circle" aria-hidden="true"></i> {{ settings.about_item_1 }}</li>
-                <li><i class="fas fa-check-circle" aria-hidden="true"></i> {{ settings.about_item_2 }}</li>
-                <li><i class="fas fa-check-circle" aria-hidden="true"></i> {{ settings.about_item_3 }}</li>
-                <li><i class="fas fa-check-circle" aria-hidden="true"></i> {{ settings.about_item_4 }}</li>
-                <li><i class="fas fa-check-circle" aria-hidden="true"></i> {{ settings.about_item_5 }}</li>
+                <li>✓ {{ settings.about_item_1 }}</li>
+                <li>✓ {{ settings.about_item_2 }}</li>
+                <li>✓ {{ settings.about_item_3 }}</li>
+                <li>✓ {{ settings.about_item_4 }}</li>
+                <li>✓ {{ settings.about_item_5 }}</li>
             </ul>
-            <a href="{% url 'core:iletisim' %}" class="btn-primary"><span><i class="fas fa-phone-alt" aria-hidden="true"></i> {{ settings.about_btn }}</span></a>
+            <a href="{% url 'core:iletisim' %}" class="btn-primary"><span>{{ settings.about_btn }}</span></a>
         </div>
         <div class="about-image" style="font-size:6rem;">👷</div>
     </div>
