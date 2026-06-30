@@ -131,6 +131,37 @@ class SiteSettings(models.Model):
     detail_back_btn = models.CharField(max_length=50, default='Назад к услугам', verbose_name="Детали - Кнопка назад")
     detail_order_btn = models.CharField(max_length=50, default='Заказать', verbose_name="Детали - Кнопка заказа")
 
+    # ==================== 10.1 ДЕТАЛЬНЫЕ СТРАНИЦЫ - ДОП. БЛОКИ ====================
+    # Блок 1: Срок
+    detail_block_1_label = models.CharField(max_length=100, default='Срок', verbose_name="Блок 1 - Этикетка")
+    detail_block_1_value = models.CharField(max_length=200, default='3-12 месяцев', verbose_name="Блок 1 - Значение")
+    detail_block_1_active = models.BooleanField(default=True, verbose_name="Блок 1 - Активен")
+    
+    # Блок 2: Гарантия
+    detail_block_2_label = models.CharField(max_length=100, default='Гарантия', verbose_name="Блок 2 - Этикетка")
+    detail_block_2_value = models.CharField(max_length=200, default='2 года', verbose_name="Блок 2 - Значение")
+    detail_block_2_active = models.BooleanField(default=True, verbose_name="Блок 2 - Активен")
+    
+    # Блок 3: Ключи
+    detail_block_3_label = models.CharField(max_length=100, default='Ключи', verbose_name="Блок 3 - Этикетка")
+    detail_block_3_value = models.CharField(max_length=200, default='Под ключ', verbose_name="Блок 3 - Значение")
+    detail_block_3_active = models.BooleanField(default=True, verbose_name="Блок 3 - Активен")
+    
+    # Блок 4: Локация
+    detail_block_4_label = models.CharField(max_length=100, default='Локация', verbose_name="Блок 4 - Этикетка")
+    detail_block_4_value = models.CharField(max_length=200, default='Стамбул и область', verbose_name="Блок 4 - Значение")
+    detail_block_4_active = models.BooleanField(default=True, verbose_name="Блок 4 - Активен")
+    
+    # Блок 5: Дополнительный (isteğe bağlı)
+    detail_block_5_label = models.CharField(max_length=100, default='', blank=True, verbose_name="Блок 5 - Этикетка")
+    detail_block_5_value = models.CharField(max_length=200, default='', blank=True, verbose_name="Блок 5 - Значение")
+    detail_block_5_active = models.BooleanField(default=False, verbose_name="Блок 5 - Активен")
+    
+    # Блок 6: Дополнительный (isteğe bağlı)
+    detail_block_6_label = models.CharField(max_length=100, default='', blank=True, verbose_name="Блок 6 - Этикетка")
+    detail_block_6_value = models.CharField(max_length=200, default='', blank=True, verbose_name="Блок 6 - Значение")
+    detail_block_6_active = models.BooleanField(default=False, verbose_name="Блок 6 - Активен")
+
     # ==================== 11. СТРАНИЦЫ ====================
     page_services_title = models.CharField(max_length=200, default='Наши услуги', verbose_name="Страница - Услуги заголовок")
     page_services_subtitle = models.CharField(max_length=200, default='Профессиональные решения для вашего строительства', verbose_name="Страница - Услуги подзаголовок")

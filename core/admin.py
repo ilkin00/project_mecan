@@ -72,10 +72,21 @@ class SiteSettingsAdmin(admin.ModelAdmin):
         ('📝 ФОРМА СВЯЗИ', {
             'fields': ('form_name', 'form_phone', 'form_email', 'form_message', 'form_btn')
         }),
-        ('📄 ДЕТАЛЬНЫЕ СТРАНИЦЫ', {
+        ('📄 ДЕТАЛЬНЫЕ СТРАНИЦЫ - ОСНОВНЫЕ', {
             'fields': ('detail_price_label', 'detail_price_note', 'detail_features_label',
                       'detail_gallery_label', 'detail_video_label',
                       'detail_back_btn', 'detail_order_btn')
+        }),
+        ('📄 ДЕТАЛЬНЫЕ СТРАНИЦЫ - ДОП. БЛОКИ (С checkbox)', {
+            'fields': (
+                ('detail_block_1_label', 'detail_block_1_value', 'detail_block_1_active'),
+                ('detail_block_2_label', 'detail_block_2_value', 'detail_block_2_active'),
+                ('detail_block_3_label', 'detail_block_3_value', 'detail_block_3_active'),
+                ('detail_block_4_label', 'detail_block_4_value', 'detail_block_4_active'),
+                ('detail_block_5_label', 'detail_block_5_value', 'detail_block_5_active'),
+                ('detail_block_6_label', 'detail_block_6_value', 'detail_block_6_active'),
+            ),
+            'description': 'Her bloğu aktif/pasif yapabilir, etiket ve değerini değiştirebilirsiniz.'
         }),
         ('📋 СТРАНИЦЫ', {
             'fields': ('page_services_title', 'page_services_subtitle',

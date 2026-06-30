@@ -18,27 +18,27 @@
             <div class="detail-content">
                 <h2>{{ settings.detail_features_label }}</h2>
                 <p>{{ hizmet.detail }}</p>
-                
+
                 {% if image_url %}
                 <div style="margin:20px 0;border-radius:var(--radius-sm);overflow:hidden;">
                     <img src="{{ image_url }}" alt="{{ hizmet.title }}" style="width:100%;height:auto;display:block;border-radius:var(--radius-sm);" />
                 </div>
                 {% endif %}
-                
+
                 <h3>{{ settings.detail_features_label }}</h3>
                 <ul class="about-list">
                     {% for feature in hizmet.features %}
                     <li><i class="fas fa-check-circle" aria-hidden="true"></i> {{ feature }}</li>
                     {% endfor %}
                 </ul>
-                
-                <!-- GALERİ RESİMLERİ - Birden fazla resim -->
+
+                <!-- GALERİ RESİMLERİ -->
                 {% if galeri_resimleri %}
                 <h3>{{ settings.detail_gallery_label }}</h3>
                 <div class="detail-gallery">
                     {% for resim in galeri_resimleri %}
                     <div class="gallery-item" style="background:transparent;border:none;padding:0;min-height:150px;position:relative;overflow:hidden;">
-                        <img src="{{ resim.image.url }}" alt="{{ resim.title|default:hizmet.title }}" 
+                        <img src="{{ resim.image.url }}" alt="{{ resim.title|default:hizmet.title }}"
                              style="width:100%;height:150px;object-fit:cover;border-radius:var(--radius-sm);" />
                         {% if resim.title %}
                         <div style="position:absolute;bottom:0;left:0;right:0;padding:8px 12px;background:rgba(0,0,0,0.6);color:#fff;font-size:0.8rem;border-radius:0 0 var(--radius-sm) var(--radius-sm);">
@@ -49,7 +49,7 @@
                     {% endfor %}
                 </div>
                 {% endif %}
-                
+
                 {% if video_source %}
                 <h3>{{ settings.detail_video_label }}</h3>
                 <div class="detail-video">
@@ -65,20 +65,63 @@
                     {% endif %}
                 </div>
                 {% endif %}
-                
+
                 <a href="{% url 'core:hizmetler' %}" class="back-button btn-outline"><i class="fas fa-arrow-left" aria-hidden="true"></i> {{ settings.detail_back_btn }}</a>
             </div>
-            
+
             <aside>
                 <div class="detail-meta">
                     <h3>{{ settings.detail_price_label }}</h3>
                     <div class="price gradient-text">{{ hizmet.price }}</div>
                     <div class="price-note">{{ settings.detail_price_note }}</div>
                     <ul>
-                        <li><span class="label">Срок</span><span class="value">3-12 месяцев</span></li>
-                        <li><span class="label">Гарантия</span><span class="value">2 года</span></li>
-                        <li><span class="label">Ключи</span><span class="value">Под ключ</span></li>
-                        <li><span class="label">Локация</span><span class="value">Стамбул и область</span></li>
+                        <!-- BLOK 1 -->
+                        {% if settings.detail_block_1_active %}
+                        <li>
+                            <span class="label">{{ settings.detail_block_1_label }}</span>
+                            <span class="value">{{ settings.detail_block_1_value }}</span>
+                        </li>
+                        {% endif %}
+                        
+                        <!-- BLOK 2 -->
+                        {% if settings.detail_block_2_active %}
+                        <li>
+                            <span class="label">{{ settings.detail_block_2_label }}</span>
+                            <span class="value">{{ settings.detail_block_2_value }}</span>
+                        </li>
+                        {% endif %}
+                        
+                        <!-- BLOK 3 -->
+                        {% if settings.detail_block_3_active %}
+                        <li>
+                            <span class="label">{{ settings.detail_block_3_label }}</span>
+                            <span class="value">{{ settings.detail_block_3_value }}</span>
+                        </li>
+                        {% endif %}
+                        
+                        <!-- BLOK 4 -->
+                        {% if settings.detail_block_4_active %}
+                        <li>
+                            <span class="label">{{ settings.detail_block_4_label }}</span>
+                            <span class="value">{{ settings.detail_block_4_value }}</span>
+                        </li>
+                        {% endif %}
+                        
+                        <!-- BLOK 5 -->
+                        {% if settings.detail_block_5_active and settings.detail_block_5_label %}
+                        <li>
+                            <span class="label">{{ settings.detail_block_5_label }}</span>
+                            <span class="value">{{ settings.detail_block_5_value }}</span>
+                        </li>
+                        {% endif %}
+                        
+                        <!-- BLOK 6 -->
+                        {% if settings.detail_block_6_active and settings.detail_block_6_label %}
+                        <li>
+                            <span class="label">{{ settings.detail_block_6_label }}</span>
+                            <span class="value">{{ settings.detail_block_6_value }}</span>
+                        </li>
+                        {% endif %}
                     </ul>
                     <a href="{% url 'core:iletisim' %}" class="btn-primary" style="margin-top:20px;width:100%;justify-content:center;"><span><i class="fas fa-phone-alt" aria-hidden="true"></i> {{ settings.detail_order_btn }}</span></a>
                 </div>
